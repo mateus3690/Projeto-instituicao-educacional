@@ -4,12 +4,13 @@ Projeto de uma instituição educacional chamada Faculdade Inovação Tecnológi
 
 Para Iniciar:
   
-  1º Vá em todos os repositorio e encontre a mateus3690/API_INST_EDUCACIONAL, lá vai explicar a como configurar o ambiente.
-  
-  2º Depois que a API estiver configurada e rodando:
-      - git init
-      - git clone https://github.com/mateus3690/Projeto-instituicao-educacional.git     
-      
+    1º acesse e clone esse repositorio https://github.com/mateus3690/API_INST_EDUCACIONAL
+        - lá vai explicar a como configurar o ambiente.
+
+    2º Depois que a API estiver configurada e rodando:
+        - git init
+        - git clone https://github.com/mateus3690/Projeto-instituicao-educacional.git     
+
  
  Depêndencias:
  
