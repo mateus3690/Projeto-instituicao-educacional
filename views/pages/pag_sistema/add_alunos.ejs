@@ -1,0 +1,63 @@
+<%- contentFor('body') %>
+    <div class="container my-5 border" style="background-color: rgba(80, 78, 78, 0.1);">
+      <h1 class="text-center my-4"> Cadastro de alunos</h1>
+      <form action="/add_alunos" method="post" role="form" class="form" id="form-aluno">
+        <div class="row">
+
+          <div class="col-8 form-group">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome Completo" required>
+          </div>
+
+          <div class="col form-group">
+            <label for="nascimento">Data de Nascimento</label>
+            <input type="date" class="form-control" name="nascimento" id="nascimento" placeholder="Data de nascimento" required>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" name="cpf" class="form-control" id="cpf" placeholder="CPF" required>
+          </div>
+
+          <div class="col form-group">
+            <label for="rg">RG</label>
+            <input type="text" class="form-control" name="rg" id="rg" placeholder="RG" required>
+          </div>
+
+        </div>
+
+        <div class="col-8 form-group">
+          <label for="endereco">Endereço</label>
+          <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Cidade /Endereço /Nº" required>
+        </div>
+
+        <div class="row">
+
+          <div class="col form-group">
+            <label for="curso">Curso</label>
+            <select class="form-control" name="curso" id="curso" form="form-aluno">
+              <% cursos.forEach((curso) => { %>
+                <option value="<%= curso.nome %>"><%= curso.nome %></option>
+              <% }); %>
+            </select>
+            
+          </div>
+
+          <div class="col form-group">
+            <label for="mensalidade">Mensalidade</label>
+            <input type="number" step="any" class="form-control" name="mensalidade" id="mensalidade" placeholder="Mensalidade" required>
+          </div>
+
+        </div>
+        
+        
+        <div class="text-center my-3">
+            <input type="submit" value="Cadastrar" class=" btn-primary btn-lg">
+        </div>
+
+      </form>
+    </div>

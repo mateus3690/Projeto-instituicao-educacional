@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Código</td>
+            <td>Nome</td>
+            <td>Idade</td>
+            <td>Matrícula</td>
+            <td>Edição</td>
+            <td>Exclusão</td>
+        </tr>
+        <% alunos.forEach((aluno) => { %>
+            <tr>        
+                <td><%= aluno.id %></td>
+                <td><%= aluno.nome %></td>
+                <td><%= aluno.idade %></td>
+                <td><%= aluno.matricula %></td>
+                <td><a href="/editar/<%= aluno.id %>">Editar</a></td>
+                <td><a href="/excluir/<%= aluno.id %>">Excluir</a></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
