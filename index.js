@@ -23,6 +23,7 @@ app.get('/sistema_FIT', (req, res) =>{
     res.render('pages/pag_sistema/sistema_FIT');
 });
 
+
 //----------------CURSOS--------------
 app.get('/add_cursos', (req, res) => {
     res.render('pages/pag_sistema/add_cursos');
@@ -30,24 +31,31 @@ app.get('/add_cursos', (req, res) => {
 
 app.post('/add_cursos', (req, res) => {
 
-    async function makeGetRequest() {
+    async function CursoPostRequest() {
 
         let cursos = {
             'nome': req.body.nome
            ,'tempo_duracao': req.body.tempo
            ,'descricao': req.body.descricao
+           ,'mensalidade':req.body.mensalidade
        };
 
-        let res = await axios.post('http://localhost:5000/v1/cursos/', cursos);
+       let auth = {
+        username: 'ADMINISTRADOR',
+        password: 'admin12345'
+       }
+
+        let res = await axios.post('http://localhost:5000/v1/cursos/', cursos, {auth});
 
         let data = res.data;
         console.log(data);
     }
 
-    makeGetRequest();
-
+    CursoPostRequest();
     res.redirect('/sistema_FIT');
+    
 });
+
 
 //----------------PROFESSORES-------------
 app.get('/add_professor', (req, res) => {
@@ -56,52 +64,63 @@ app.get('/add_professor', (req, res) => {
 
 app.post('/add_professor', (req, res) => {
 
-    let cursos = {
-         nome: req.body.nome
-        ,tempo_duracao: req.body.tempo
-        ,descricao: req.body.descricao
-    };
+    async function ProfessorPostRequest() {
 
-   
+        let professor = {
+            nome: req.body.nome
+           ,nascimento: req.body.nascimento
+           ,cpf: req.body.cpf
+           ,rg: req.body.rg
+           ,endereco: req.body.endereco
+           ,materia: req.body.materia
+           ,salario:req.body.salario   
+       };
+
+       let auth = {
+        username: 'ADMINISTRADOR',
+        password: 'admin12345'
+       }
+
+       let res = await axios.post('http://localhost:5000/v1/profess/', professor, {auth});
+       let data = res.data;
+       console.log(data);
+    }
+    ProfessorPostRequest();
     res.redirect('/sistema_FIT');
 });
+
 
 //-----------ALUNOS-------------------
 app.get('/add_alunos', (req, res) => {
 
-    async function getNumberOfFollowers() {
-        let cursos = [];
-        var rest = await axios.get('http://localhost:5000/v1/cursos/');
-      
+    async function CursoGetResquest() {
+        var rest = await axios.get('http://localhost:5000/v1/cursos/'); 
         let response = rest.data;
 
-      
-        console.log('--------------')
-        console.log(response)
-
-        res.render('pages/pag_sistema/add_alunos', { cursos : cursos });
-        curso = response
-        console.log(cursos)
+        res.render('pages/pag_sistema/add_alunos', { cursos : response});
     }
-    getNumberOfFollowers();
-    
-        /*for (let i = 0; i < (resultado.rows).length; i++){
-            cursos.push(resultado.rows[i])
-        }*/             
-                
+    CursoGetResquest();            
 });
 
 app.post('/add_alunos', (req, res) => {
 
-    let aluno = {
-         nome: req.body.nome
-        ,nascimento: req.body.nascimento
-        ,cpf: req.body.cpf
-        ,rg: req.body.rg
-        ,endereco: req.body.endereco
-        ,mensalidade: req.body.mensalidade
-        ,curso: req.body.curso
-    };
+    async function AlunoPostRequest() {
+
+        let aluno = {
+            nome: req.body.nome
+           ,nascimento: req.body.nascimento
+           ,cpf: req.body.cpf
+           ,rg: req.body.rg
+           ,endereco: req.body.endereco
+           ,curso: req.body.curso
+       };
+
+        let res = await axios.post('http://localhost:5000/v1/alunos/', aluno);
+
+        let data = res.data;
+        console.log(data);
+    }
+    AlunoPostRequest();
 
     res.redirect('/sistema_FIT');
 });
